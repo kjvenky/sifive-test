@@ -4,20 +4,31 @@
   "description": "",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.94.0"
+    "vscode": "^1.93.1"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:sifive-test.runSiFiveTest"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "sifive-test.helloWorld",
-        "title": "Hello World"
+        "command": "sifive-test.runSiFiveTest",
+        "title": "Run SiFive Test"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "sifive-test.runSiFiveTest",
+          "when": "resourceLangId == json || resourceLangId == json5",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

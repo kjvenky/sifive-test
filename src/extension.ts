@@ -13,12 +13,17 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('sifive-test.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from sifive-test!');
+	const disposable = vscode.commands.registerCommand('sifive-test.runSiFiveTest', () => {
+		 // Show a modal popup
+		 vscode.window.showInformationMessage('Running SiFive Test...', { modal: true }).then(selection => {
+			console.log(selection);
+            // Handle 
+            vscode.window.showInformationMessage('SiFive Test acknowledged.');
+        });
 	});
 
+	
+	// Add the disposable to the context's subscriptions to clean up on deactivate
 	context.subscriptions.push(disposable);
 }
 
