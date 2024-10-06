@@ -1,8 +1,10 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import Ajv from 'ajv';
+import { Port } from './interfaces';
+import { checkForOverlaps } from './helper';
 
+const Ajv = require("ajv");
 const ajv = new Ajv();
 
 // Define the schema to support dynamic ports
@@ -23,57 +25,6 @@ const schema = {
     },
     "additionalProperties": false
 };
-
-function checkForOverlaps(ports: Record<string, { baseAddress: number; sizeBytes: number }>): OverlapResult[] {
-
-    const ranges: Array<{ key: string; start: number; end: number }> = [];
-
-     // Calculate ranges for each port
-	 for (const portKey in ports) {
-        const { baseAddress, sizeBytes } = ports[portKey];
-        const start = baseAddress;
-        const end = baseAddress + sizeBytes;
-        ranges.push({ key: portKey, start, end });
-    }
-
-	const overlaps: OverlapResult[] = [];
-
-    // Check for overlaps
-   // Check for overlaps
-    for (let i = 0; i < ranges.length; i++) {
-        for (let j = i + 1; j < ranges.length; j++) {
-            // Check if ranges overlap
-            if (ranges[i].start < ranges[j].end && ranges[j].start < ranges[i].end) {
-                const overlapStart = Math.max(ranges[i].start, ranges[j].start);
-                const overlapEnd = Math.min(ranges[i].end, ranges[j].end);
-                overlaps.push({
-                    port1: ranges[i].key,
-                    port2: ranges[j].key,
-                    start: overlapStart,
-                    end: overlapEnd,
-                });
-            }
-        }
-    }
-
-    return overlaps; // Return detected overlaps
-}
-
-// Define the expected structure of the JSON data
-interface Port {
-    baseAddress: number;
-    protocol: string;
-    sizeBytes: number;
-    widthBits: number;
-}
-
-interface OverlapResult {
-    port1: string;
-    port2: string;
-    start: number;
-    end: number;
-}
-
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
