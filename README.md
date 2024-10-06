@@ -1,22 +1,40 @@
 # SiFive Test Extension
 
-Extension to validate soon file
+The **SiFive Test** extension for Visual Studio Code validates JSON files for format correctness and checks for schema overlaps. This README provides a comprehensive guide on how to compile, run the extension, execute tests, and understand its underlying architecture and logic.
 
-## Features
+## Table of Contents
 
-- Code Snippets: Quickly insert commonly used code blocks.
-- Theme Customization: Change the theme of your editor.
-- Code Validation: Automatically check your code for errors.
+- [How to Compile the Extension](#how-to-compile-the-extension)
+- [How to Run the Extension](#how-to-run-the-extension)
+- [How to Run the Test](#how-to-run-the-test)
+- [Explanation of Your Test](#explanation-of-your-test)
+- [Explanation of Your Logic and Architecture](#explanation-of-your-logic-and-architecture)
+- [Future Improvements](#future-improvements)
 
-## Installation
+## How to Compile the Extension
 
-1. Open Visual Studio Code.
-2. Go to the Extensions view by clicking on the Extensions icon in the Activity Bar.
-3. Search for "My Awesome Extension" and click Install.
+To compile the SiFive Test extension, follow these steps:
 
-## Usage
+1. Open a terminal and navigate to the root directory of the project.
+2. Run the following command:
 
-After installation, access the features through the command palette:
+    ```bash
+    npm run compile
+    ```
+
+This command uses TypeScript to compile the source code located in the `src` directory into JavaScript, which will be output to the `out` directory. Make sure you have Node.js and npm installed to execute this command successfully.
+
+## How to Run the Extension
+
+To run the SiFive Test extension:
+
+1. Open the project in Visual Studio Code.
+2. Press `F5` to start a new VS Code window with the extension loaded. This action launches another instance of Visual Studio Code with your extension activated.
+3. You can use the Command Palette (Ctrl + Shift + P) to access commands provided by the extension for validating JSON files.
+
+## How to Run the Test
+
+To run the tests for the extension, execute the following command in your terminal:
 
 ```bash
-Ctrl + Shift + P
+npm test
