@@ -1,0 +1,20 @@
+{
+    "Port0": {
+        "baseAddress": 1000,
+        "protocol": "AHB_LITE",
+        "sizeBytes": 1000,
+        "widthBits": 32
+    },
+    "Port1": {
+        "baseAddress": 500,
+        "protocol": "AHB_LITE",
+        "sizeBytes": 1000,
+        "widthBits": 32
+    },
+    "Port2": {
+        "baseAddress": 3000,
+        "protocol": "AHB_LITE",
+        "sizeBytes": 1000,
+        "widthBits": 32
+    }
+}
